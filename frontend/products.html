@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products — ArthDrishti Demand & Stock Risk</title>
+  <meta name="description" content="Browse all products, filter by category or search, and drill into individual product demand forecasts and history.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="ArthDrishti home">
+        <img src="assets/logo.svg" alt="" width="34" height="34">
+        <span>ArthDrishti<small>Demand &amp; Risk AI</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+      <ul class="nav-links" id="site-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="risk.html">Risk Report</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="nav-actions"><a class="btn btn-outline btn-sm" href="login.html">Sign in</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> · <span>Products</span></div>
+        <h1>Products catalog</h1>
+        <p class="muted mb-0">Search, filter by category and open any product to see demand, history and risk.</p>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="card">
+          <div class="grid grid-2" style="align-items:end">
+            <div class="field">
+              <label for="searchProd">Search</label>
+              <input id="searchProd" class="input" placeholder="Product ID or name (e.g. P001 or Milk)">
+            </div>
+            <div class="field">
+              <label for="catProd">Category</label>
+              <select id="catProd" class="select"><option value="">All categories</option></select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card">
+          <div class="table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th class="num">Price (₹)</th>
+                  <th class="num">Current stock</th>
+                  <th class="num">Reorder level</th>
+                  <th class="num">Lead time (days)</th>
+                  <th class="no-sort"></th>
+                </tr>
+              </thead>
+              <tbody id="productsBody"><tr><td colspan="7" class="state"><span class="spinner"></span> Loading products…</td></tr></tbody>
+            </table>
+          </div>
+          <div class="small muted mt-2" id="productsCount"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-brand" href="index.html"><img src="assets/logo.svg" alt="ArthDrishti logo" width="30" height="30"> ArthDrishti</a>
+          <p class="small">AI-powered demand forecasting and inventory risk analytics for retail stores.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="risk.html">Risk report</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+            <li><a href="login.html">Sign in</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:support@arthdrishti.com">support@arthdrishti.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ArthDrishti. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

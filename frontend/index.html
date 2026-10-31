@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArthDrishti — AI Inventory Demand & Stock Risk Prediction</title>
+  <meta name="description" content="ArthDrishti predicts retail product demand with machine learning and flags stock-out and slow-moving risks, so store managers know exactly what to reorder and when.">
+  <meta name="theme-color" content="#4f46e5">
+  <meta property="og:title" content="ArthDrishti — AI Inventory Demand & Stock Risk Prediction">
+  <meta property="og:description" content="Demand forecasting and stock-risk analytics for retail stores.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="ArthDrishti home">
+        <img src="assets/logo.svg" alt="" width="34" height="34">
+        <span>ArthDrishti<small>Demand &amp; Risk AI</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+      <ul class="nav-links" id="site-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="risk.html">Risk Report</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="nav-actions"><a class="btn btn-outline btn-sm" href="login.html">Sign in</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">AI Inventory Intelligence</span>
+          <h1>Never run out. Never overstock.</h1>
+          <p class="hero-lead">
+            ArthDrishti forecasts how much of each product will sell next week, then turns that
+            forecast into a clear action list: what to reorder today, and what is sitting on the
+            shelf too long.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="dashboard.html">Open the dashboard</a>
+            <a class="btn btn-outline" href="products.html">Browse products</a>
+          </div>
+          <p class="small muted mt-2" id="heroStatus">Connecting to the prediction service…</p>
+        </div>
+        <div class="hero-panel">
+          <h3 class="card-title mb-2">Forecast at a glance</h3>
+          <div class="stat-row"><span class="muted">Products tracked</span><strong id="heroProducts">—</strong></div>
+          <div class="stat-row"><span class="muted">Categories</span><strong id="heroCategories">—</strong></div>
+          <div class="stat-row"><span class="muted">Sales records</span><strong id="heroRecords">—</strong></div>
+          <div class="stat-row"><span class="muted">Data through</span><strong id="heroDataDate">—</strong></div>
+          <a class="btn btn-ghost btn-sm mt-2" href="risk.html">See the stock-risk list →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-4" id="statsGrid">
+          <div class="stat"><div class="stat-label">Products</div><div class="stat-value skeleton" style="width:60%">&nbsp;</div></div>
+          <div class="stat"><div class="stat-label">Units sold</div><div class="stat-value skeleton" style="width:70%">&nbsp;</div></div>
+          <div class="stat"><div class="stat-label">Categories</div><div class="stat-value skeleton" style="width:40%">&nbsp;</div></div>
+          <div class="stat"><div class="stat-label">Analysed period</div><div class="stat-value skeleton" style="width:80%">&nbsp;</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:#fff;border-block:1px solid var(--border)">
+      <div class="container">
+        <div class="center" style="max-width:640px;margin:0 auto 1.5rem">
+          <h2>From raw sales to a decision</h2>
+          <p class="muted">A four-step pipeline that connects predictions to the actions a manager actually takes.</p>
+        </div>
+        <div class="grid grid-4">
+          <div class="card">
+            <div class="step-num">1</div>
+            <h3>Clean &amp; analyse</h3>
+            <p class="small muted mb-0">Historical sales and inventory are de-duplicated, gaps filled and outliers capped before modelling.</p>
+          </div>
+          <div class="card">
+            <div class="step-num">2</div>
+            <h3>Engineer features</h3>
+            <p class="small muted mb-0">Time, lag and rolling-average features capture weekday patterns, seasonality and momentum.</p>
+          </div>
+          <div class="card">
+            <div class="step-num">3</div>
+            <h3>Predict demand</h3>
+            <p class="small muted mb-0">A gradient-boosted model forecasts the next 7-day demand for every product.</p>
+          </div>
+          <div class="card">
+            <div class="step-num">4</div>
+            <h3>Flag risk</h3>
+            <p class="small muted mb-0">Forecast vs. stock and lead time produce High / Medium / Overstocked / Safe labels and reorder quantities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card-head">
+          <div>
+            <h2 class="mb-0">Highest forecast demand</h2>
+            <p class="muted small mb-0">Top products for the next 7 days, based on the trained model.</p>
+          </div>
+          <a class="btn btn-outline btn-sm" href="dashboard.html">Full dashboard</a>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th class="no-sort">Product</th>
+                  <th class="no-sort">Category</th>
+                  <th class="no-sort num">Forecast (7d)</th>
+                  <th class="no-sort num">Avg / day</th>
+                  <th class="no-sort">Risk</th>
+                </tr>
+              </thead>
+              <tbody id="topDemandBody">
+                <tr><td colspan="5" class="state"><span class="spinner"></span> Loading forecast…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background:#fff;border-top:1px solid var(--border)">
+      <div class="container card card-pad-lg center" style="background:linear-gradient(135deg,#eef0ff,#e0f2fe);border-color:#dbe3ff">
+        <h2 class="mt-0">Ready to see your shelves before the rush?</h2>
+        <p class="muted" style="max-width:60ch;margin-inline:auto">Filter by category, switch between weekly and monthly views, and download the risk report as a CSV.</p>
+        <div class="flex gap items-center" style="justify-content:center;flex-wrap:wrap">
+          <a class="btn btn-primary" href="dashboard.html">Open dashboard</a>
+          <a class="btn btn-outline" href="about.html">How it works</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-brand" href="index.html"><img src="assets/logo.svg" alt="ArthDrishti logo" width="30" height="30"> ArthDrishti</a>
+          <p class="small">AI-powered demand forecasting and inventory risk analytics for retail stores. Predict what sells and act before stock-outs happen.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="risk.html">Risk report</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About the project</a></li>
+            <li><a href="about.html#api">API reference</a></li>
+            <li><a href="about.html#contact">Contact us</a></li>
+            <li><a href="login.html">Sign in</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:support@arthdrishti.com">support@arthdrishti.com</a></li>
+            <li class="small">Mon–Sat, 9:00–18:00 IST</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ArthDrishti. All rights reserved.</span>
+        <span>AI Inventory Demand &amp; Stock Risk Prediction System</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

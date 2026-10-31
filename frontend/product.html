@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product details — ArthDrishti Demand & Stock Risk</title>
+  <meta name="description" content="Individual product page showing demand forecast, historical sales, stock levels and stock-out risk with clear action.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="ArthDrishti home">
+        <img src="assets/logo.svg" alt="" width="34" height="34">
+        <span>ArthDrishti<small>Demand &amp; Risk AI</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+      <ul class="nav-links" id="site-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="risk.html">Risk Report</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="nav-actions"><a class="btn btn-outline btn-sm" href="login.html">Sign in</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> · <a href="products.html">Products</a> · <span id="breadcrumbId">Product</span></div>
+        <h1 id="prodTitle">Product details</h1>
+        <p class="muted mb-0" id="prodSub">Loading…</p>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container grid grid-2">
+        <div class="card">
+          <div class="card-head"><h3 class="mb-0">Product info</h3></div>
+          <div class="grid grid-2">
+            <div><div class="small muted">Product ID</div><div class="cell-strong" id="pId">—</div></div>
+            <div><div class="small muted">Category</div><div class="pill mt-1" id="pCat">—</div></div>
+            <div><div class="small muted">Price</div><div class="cell-strong">₹<span id="pPrice">—</span></div></div>
+            <div><div class="small muted">Current stock</div><div class="cell-strong" id="pStock">—</div></div>
+            <div><div class="small muted">Reorder level</div><div class="cell-strong" id="pReorder">—</div></div>
+            <div><div class="small muted">Lead time (days)</div><div class="cell-strong" id="pLead">—</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3 class="mb-0">Risk status</h3><div id="pRiskBadge"></div></div>
+          <div class="small muted">Days of stock left</div><div class="cell-strong" id="pDaysLeft">—</div>
+          <div class="small muted mt-2">Suggested reorder quantity</div><div class="cell-strong" id="pReorderQty">—</div>
+          <div class="small muted mt-2">Recommended action</div><div class="small" id="pAction">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container grid grid-2">
+        <div class="card">
+          <div class="card-head"><h3 class="mb-0">Daily forecast</h3>
+            <div class="flex gap wrap items-center">
+              <select id="horizon" class="select" style="padding:0.4rem 0.7rem"><option value="7" selected>7 days</option><option value="14">14 days</option><option value="30">30 days</option></select>
+              <label class="switch small"><input type="checkbox" id="promotion"><span>Promotion</span></label>
+              <button class="btn btn-outline btn-sm" id="btnForecast">Update</button>
+            </div>
+          </div>
+          <div class="chart-box tall" id="chartDaily"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3 class="mb-0">60-day historical sales</h3></div>
+          <div class="chart-box tall" id="chartHistory"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid-2">
+        <div class="card">
+          <div class="card-head"><h3 class="mb-0">Forecast details</h3><span class="small muted" id="fcSummary"></span></div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Date</th><th class="num">Predicted units</th></tr></thead>
+              <tbody id="fcBody"><tr><td colspan="2" class="state">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3 class="mb-0">Weekly breakdown</h3></div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Week start</th><th>Week end</th><th class="num">Units</th></tr></thead>
+              <tbody id="wkBody"><tr><td colspan="3" class="state">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-brand" href="index.html"><img src="assets/logo.svg" alt="ArthDrishti logo" width="30" height="30"> ArthDrishti</a>
+          <p class="small">AI-powered demand forecasting and inventory risk analytics for retail stores.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="risk.html">Risk report</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+            <li><a href="login.html">Sign in</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:support@arthdrishti.com">support@arthdrishti.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ArthDrishti. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Risk Report — ArthDrishti Demand & Stock Risk</title>
+  <meta name="description" content="Filterable stock-risk report. See stock-outs (High), medium-risk, overstocked (slow-moving) and safe products with suggested reorder quantities.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="ArthDrishti home">
+        <img src="assets/logo.svg" alt="" width="34" height="34">
+        <span>ArthDrishti<small>Demand &amp; Risk AI</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+      <ul class="nav-links" id="site-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="risk.html">Risk Report</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="nav-actions"><a class="btn btn-outline btn-sm" href="login.html">Sign in</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> · <span>Risk Report</span></div>
+        <h1>Stock-risk report</h1>
+        <p class="muted mb-0">Filter by risk level, category or search. The strongest action is on the High-risk stock-outs.</p>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="container">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="all">All <span class="count" id="cntAll">0</span></button>
+          <button class="tab" data-tab="high">Stock-out (High) <span class="count" id="cntHigh">0</span></button>
+          <button class="tab" data-tab="medium">Medium <span class="count" id="cntMedium">0</span></button>
+          <button class="tab" data-tab="over">Overstocked <span class="count" id="cntOver">0</span></button>
+          <button class="tab" data-tab="safe">Safe <span class="count" id="cntSafe">0</span></button>
+        </div>
+        <div class="card">
+          <div class="filters">
+            <div class="field">
+              <label for="horizon">Horizon</label>
+              <select id="horizon" class="select"><option value="7" selected>7 days</option><option value="14">14 days</option><option value="30">30 days</option></select>
+            </div>
+            <div class="field">
+              <label for="category">Category</label>
+              <select id="category" class="select"><option value="">All</option></select>
+            </div>
+            <div class="field">
+              <label for="search">Search</label>
+              <input id="search" class="input" placeholder="Product ID or name">
+            </div>
+            <div class="field">
+              <button class="btn btn-outline" id="btnApply">Apply</button>
+            </div>
+            <div class="field" style="margin-left:auto">
+              <button class="btn btn-outline btn-sm" id="btnExport">Download CSV</button>
+            </div>
+          </div>
+          <hr class="divider">
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Product</th><th>Category</th><th class="num">Forecast</th><th class="num">Stock</th><th class="num">Days left</th><th>Risk</th><th class="num">Reorder qty</th><th>Action</th></tr></thead>
+              <tbody id="tbody"><tr><td colspan="8" class="state"><span class="spinner"></span> Loading…</td></tr></tbody>
+            </table>
+          </div>
+          <div class="small muted mt-2" id="hint">7-day horizon recommended for operational ordering.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-brand" href="index.html"><img src="assets/logo.svg" alt="ArthDrishti logo" width="30" height="30"> ArthDrishti</a>
+          <p class="small">AI-powered demand forecasting and inventory risk analytics for retail stores.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="risk.html">Risk report</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="about.html#contact">Contact</a></li>
+            <li><a href="login.html">Sign in</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:support@arthdrishti.com">support@arthdrishti.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> ArthDrishti. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/risk.js"></script>
+</body>
+</html>
